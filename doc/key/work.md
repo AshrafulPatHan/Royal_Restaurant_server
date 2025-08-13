@@ -1,16 +1,16 @@
-## Royal Restaurant
+# Royal Restaurant
 
 Links
 - database model (https://app.eraser.io/workspace/g7uk8COoGWPripJHEcn9?origin=share)
 - server host (non)
 - next js static (non)
 
-# About server
+## About server
 creating a web server for Royal Restaurant website the server can post food sort leatest food sort by price and have a algoriddim for table reservation 
 user can reserve table and see real time which table is available to reservation . There is a admin panel there admin can see the real time data .
 The admin can add food update food and delete food. Admin can incrize and decrize the food qulaty . user can review the website after bay a food .
 
-# Key features
+## Key features
 
 server
 - server is on nest js
@@ -27,7 +27,7 @@ admin
 user
 
 
-# Routes
+## Routes
 
 user routes
 - all food
