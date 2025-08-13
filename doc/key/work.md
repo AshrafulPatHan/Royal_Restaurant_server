@@ -27,8 +27,6 @@ admin
 user
 
 
-<hr/>
-
 # Routes
 
 user routes
@@ -49,7 +47,6 @@ table reservation algoriddim
 pay online method
 - chakout food (pay online with bakes)
 
-<hr/>
 
 admin routes
 - login
