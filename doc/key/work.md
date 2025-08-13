@@ -8,7 +8,7 @@ Links
 ## About server
 creating a web server for Royal Restaurant website the server can post food sort leatest food sort by price and have a algoriddim for table reservation 
 user can reserve table and see real time which table is available to reservation . There is a admin panel there admin can see the real time data .
-The admin can add food update food and delete food. Admin can incrize and decrize the food qulaty . user can review the website after bay a food .
+The admin can add food update food and delete food. Admin can increase and decrease the food quality . user can review the website after bay a food .
 
 ## Key features
 
@@ -26,7 +26,7 @@ admin
 
 
 user
-- user can see all food 
+- user can see all food and menu (food is on home page limited food , menu is all food)
 - user can sort food
 - order a food
 - cancel a order
@@ -39,16 +39,16 @@ user
 
 user routes
 - all food
-- sort by price (food)
-- sort by test food ( sweet, spicy) 
+- sort by price         (food)
+- sort by test food     ( sweet, spicy) 
 - drink
-- sort by price (drink)
-- order food (post:method)
-- cancel order food (delete:method)
-- add review (after order a food user can review the website)
+- sort by price         (drink)
+- order food            (post:method)
+- cancel order food     (delete:method)
+- add review            (after order a food user can review the website)
 
 table reservation algoriddim
-- show all available table
+- show all available table {data:json}
 - table reservation
 - mail customer (when the table is available the algoriddim auto mail the customer)
 
@@ -57,21 +57,22 @@ pay online method
 
 
 admin routes
-- login
-- add food
-- update food
-- delete food
-- get mail
-- add menu
-- add blog
-- change password
-- profile data
-- update profile
-- all food
-- all order food (get:method)
-- latest order food (get:method)
-- all table reservation
-- available table
-- mail user
-- all review
+- login                     {data:name,password}
+- add food                  {data:json}(select the menu on admin panel)
+- update food               {data:FoodName,price,details,rating(1to5)}
+- delete food               {data:FoodName,price,details,rating(1to5)}
+- get mail                  {data:name,email,mail}
+- add menu                  {data:FoodName,price,details,rating(1to5),type}
+- add blog                  {data : title,date,description}
+- change password           {data:name,password}
+- profile data              {data:name,photoUrl,about,email}
+- update profile            {data:name,photoUrl,about,email}
+- all food                  {data:FoodName,price,details,rating(1to5)}
+- all menu                  {data:FoodName,price,details,rating(1to5)}
+- all order food            (get:method)
+- latest order food         (get:method)
+- all table reservation     {data:json}
+- available table           {data:json}
+- mail user                 (mail server)
+- all review                {data:name,photoUrl,review:text}
 
