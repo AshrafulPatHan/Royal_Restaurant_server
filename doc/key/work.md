@@ -22,9 +22,17 @@ admin
 - admin can add,delete,update food
 - there is a sorting system
 - there is a authentication system on OAuth
+- admin can see all review and shoes which one publish on home page
 
 
 user
+- user can see all food 
+- user can sort food
+- order a food
+- cancel a order
+- reserve a table and see which table is available to reserve
+- add review on website after order a food and if the customer cancel the order the review is deleted
+- user can see bast review 
 
 
 ## Routes
@@ -45,7 +53,7 @@ table reservation algoriddim
 - mail customer (when the table is available the algoriddim auto mail the customer)
 
 pay online method
-- chakout food (pay online with bakes)
+- checkout food (pay online with bakes)
 
 
 admin routes
@@ -65,4 +73,5 @@ admin routes
 - all table reservation
 - available table
 - mail user
+- all review
 
