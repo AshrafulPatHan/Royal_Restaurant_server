@@ -6,7 +6,7 @@ Links
 - next js static (non)
 
 ## About server
-creating a web server for Royal Restaurant website the server can post food sort leatest food sort by price and have a algoriddim for table reservation 
+creating a web server for Royal Restaurant website the server can post food sort latest food sort by price and have a algoriddim for table reservation 
 user can reserve table and see real time which table is available to reservation . There is a admin panel there admin can see the real time data .
 The admin can add food update food and delete food. Admin can increase and decrease the food quality . user can review the website after bay a food .
 
