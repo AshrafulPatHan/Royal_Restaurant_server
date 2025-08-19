@@ -1,8 +1,0 @@
-node_modules
-.env
-.git
-.gitignore
-package.json
-README.md
-src
-doc
