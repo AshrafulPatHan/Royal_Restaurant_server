@@ -17,7 +17,14 @@ async function connectDB() {
         
         const db = client.db("Royal_Restaurant");
         return{
-            User: db.collection('Users')
+            Admin: db.collection('Admin'),
+            Menu: db.collection('Menu'),
+            Review: db.collection('Review'),
+            Order: db.collection('Order'),
+            Reservation: db.collection('Reservation'),
+            AllTable: db.collection('AllTable'),
+            Mail: db.collection('Mail'),
+            Blog: db.collection('Blog'),
         }
 
     }catch (error) {

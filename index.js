@@ -16,10 +16,10 @@ app.get('/',(req,res)=>{
 
 connectDB().then((collections) =>{
     const publicRoutes = require('./routes/public')(collections);
-    // const adminRoutes = require('./routes/admin')(collections);
+    const adminRoutes = require('./routes/admin')(collections);
 
     app.use(publicRoutes);
-    // app.use("/admin", adminRoutes);
+    app.use("/admin", adminRoutes);
 
     app.listen(PORT, ()=> console.log(`🚀 Server running on port ${PORT}`));
 });
