@@ -65,8 +65,21 @@ try {
 }
 });
 
+//  ---- post data
 
+// send mail
+routes.post('/send-mail', async (req,res)=>{
+    try{
+        const MailData = req.body;
+        const result = await Mail.insertOne(MailData);
+        res.status(200).send(result)
+    }catch(error) {
+        console.error('error is comming on posing mail',error)
+        res.status(500).send({message:"Internal server error"})
+    }
+})
 
+// Order a tabil
 
 return routes;
 }
