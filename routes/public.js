@@ -23,21 +23,19 @@ try {
 // all menu
 routes.get('/all-menu', async (req, res) => {
 try {
-    const cursor = Menu.find();
-    const result = await cursor.toArray();
-    res.send(result);
+    const cursor = await Menu.find({}).sort({_id: -1}).toArray();
+    res.send(cursor);
 } catch (error) {
     console.error('Error retrieving data:', error);
     res.status(500).send({ message: 'Internal Server Error' });
 }
 });
 
-// letest menu
-routes.get('/letest-menu', async (req, res) => {
+// limate menu
+routes.get('/limate-menu', async (req, res) => {
 try {
-    const cursor = Review.find();
-    const result = await cursor.toArray();
-    res.send(result);
+    const cursor = Menu.find().sort({_id: -1}).limit(3).toArray();
+    res.send(cursor);
 } catch (error) {
     console.error('Error retrieving data:', error);
     res.status(500).send({ message: 'Internal Server Error' });
@@ -46,16 +44,27 @@ try {
 
 
 // all Blog
-routes.get('/all-menu', async (req, res) => {
+routes.get('/all-blog', async (req, res) => {
 try {
-    const cursor = Review.find();
-    const result = await cursor.toArray();
-    res.send(result);
+    const BlogData = await Blog.find().sort({_id: -1}).toArray();
+    res.send(BlogData);
 } catch (error) {
     console.error('Error retrieving data:', error);
     res.status(500).send({ message: 'Internal Server Error' });
 }
 });
+
+// limat blog
+routes.get('/limat-blog', async (req, res) => {
+try {
+    const BlogData = await Blog.find().sort({_id: -1}).limit(2).toArray();
+    res.send(BlogData);
+} catch (error) {
+    console.error('Error retrieving data:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+}
+});
+
 
 
 
