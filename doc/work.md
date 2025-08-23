@@ -13,7 +13,7 @@ The admin can add food update food and delete food. Admin can increase and decre
 ## Key features
 
 server
-- server is on nest js
+- server is on express js
 - use MongoDB database
 - host on render
 - use bakes on payment method

@@ -152,6 +152,25 @@ module.exports = (collections) => {
     // ---- delete request (jwt need)
 
     // delete review
+    routes.delete('/delete-review:id', async (req,res)=>{
+        const {id} =req.body;
+        if (!id) {
+            return res.status(400).send({message:"❌ ID not provided"})
+        }
+
+        try{
+            const result = await Review.deleteOne({_id: new ObjectId(id)});
+            
+            if (result.deleteCount > 0) {
+                res.status(200).send({ message: "✅ Event deleted successfully" });
+            }else {
+                res.status(404).send({ message: "❌ Event not found" });
+            }
+        }catch(error){
+            console.error("Error is coming on delete review",error)
+            res.status(500).send({message:"❌ server error"})
+        }
+    })
 
     // delete menu
 
