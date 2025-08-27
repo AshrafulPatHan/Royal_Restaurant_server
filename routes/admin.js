@@ -148,6 +148,18 @@ module.exports = (collections) => {
         }
     });
 
+    // blog details
+    routes.post('/blog-details', async (req, res) => {
+        try {
+            const { id } = req.body; // get blog id
+            const myBlog = Blog.findOne({_id : id});
+            res.status(200).send(myBlog);
+        } catch (error) {
+            console.error('Error retrieving data :',error);
+            res.status(500).send({ message: "Internal server Error" });
+        }
+    })
+
 
     // ---- delete request (jwt need)
 
