@@ -152,7 +152,10 @@ module.exports = (collections) => {
     routes.post('/blog-details', async (req, res) => {
         try {
             const { id } = req.body; // get blog id
-            const myBlog = Blog.findOne({_id : id});
+            const myBlog = await Blog.findOne({ _id : new ObjectId(id) });
+            if (!myBlog) {
+                return res.status(404).send({ message: "Blog not found" });
+            }
             res.status(200).send(myBlog);
         } catch (error) {
             console.error('Error retrieving data :',error);
