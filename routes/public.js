@@ -66,19 +66,67 @@ module.exports = (collections) => {
         }
     });
 
-  // blog details
+    // blog details
     routes.post('/blog-details-all', async (req, res) => {
         try {
             const { id } = req.body; // get blog id
-            const myBlog = await Blog.findOne({ _id : new ObjectId(id) });
+            const myBlog = await Blog.findOne(
+                { _id : new ObjectId(id) }
+            );
+
+            const viewcount =  parseInt(myBlog.View || 0, 10) + 1;
+
+            const updateView = await Blog.updateOne(
+                { _id : new ObjectId(id) },
+                {$set: { View: viewcount }},
+            );
+
             if (!myBlog) {
                 return res.status(404).send({ message: "Blog not found" });
             }
+
             res.status(200).send(myBlog);
         } catch (error) {
             console.error('Error retrieving data :',error);
             res.status(500).send({ message: "Internal server Error" });
         }
+    })
+
+    // commant blog
+    routes.patch('/comment',async (req,res)=>{
+        const {comment,name,email,photo,id} = req.body;
+
+        if ( !comment || !name || !email || !photo || !id ) {
+            return res.status(400).send({message : "all fild is require"})
+        }
+
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).send({message: "Invalid Id format"})
+        }
+
+        const bdTime = new Date().toLocaleString("en-US", {
+          timeZone: "Asia/Dhaka",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true   // AM/PM সহ দেখাবে
+        });
+
+        try{
+            const filter = {_id: new ObjectId(id)};
+            const addComment = {
+                $push: { comments: {comment,name,email,photo,date:bdTime} }
+            }
+            const result = await Blog.updateOne(filter,addComment);
+            res.status(200).send(result)
+        }catch(error){
+            console.error("error is comming on update comment:",error)
+            res.status(500).send({ message: 'Error updating comment' });
+        }
+
     })
 
 
