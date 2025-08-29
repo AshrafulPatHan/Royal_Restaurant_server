@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('server is running 1.0(dev modes)');
+    res.send('server is running 1.0(dev mode)');
 });
 
 
