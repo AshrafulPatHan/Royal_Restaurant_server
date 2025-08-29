@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = express.Router();
+const { ObjectId } = require("mongodb");
 
 module.exports = (collections) => {
     const { Menu, Review, Order, Reservation, AllTable, Mail, Blog } = collections
@@ -64,6 +65,22 @@ module.exports = (collections) => {
             res.status(500).send({ message: 'Internal Server Error' });
         }
     });
+
+  // blog details
+    routes.post('/blog-details-all', async (req, res) => {
+        try {
+            const { id } = req.body; // get blog id
+            const myBlog = await Blog.findOne({ _id : new ObjectId(id) });
+            if (!myBlog) {
+                return res.status(404).send({ message: "Blog not found" });
+            }
+            res.status(200).send(myBlog);
+        } catch (error) {
+            console.error('Error retrieving data :',error);
+            res.status(500).send({ message: "Internal server Error" });
+        }
+    })
+
 
     //  ---- post data
 
