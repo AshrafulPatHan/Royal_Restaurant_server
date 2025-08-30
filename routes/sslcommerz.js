@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const cors = require('cors');
 const { ObjectId } = require("mongodb");
 const app = express();
+const SSLCommerzPayment = require('sslcommerz-lts')
 
 app.use(cors());
 app.use(express.json());
@@ -15,66 +16,80 @@ const router = express.Router();
 module.exports = (collections) => {
 
 
-// SSLCommerz Sandbox API URL
-const baseURL = "https://sandbox.sslcommerz.com/gwprocess/v4/api.php";
+  // SSLCommerz Sandbox API URL
+  const baseURL = "https://sandbox.sslcommerz.com/gwprocess/v4/api.php";
 
-// তোমার Sandbox Credential
-const store_id = process.env.STORE_ID;
-const store_passwd = process.env.STORE_PASSWORD;
+  // তোমার Sandbox Credential
+  const store_id = process.env.STORE_ID;
+  const store_passwd = process.env.STORE_PASSWORD;
+  const is_live = false //true for live, false for sandbox
 
-// পেমেন্ট শুরু করার API
-router.post("/init", async (req, res) => {
-  try {
-    const { amount, cus_name, cus_email } = req.body;
+  // পেমেন্ট শুরু করার API
+  router.post("/init", async (req, res) => {
+    try {
+      const { amount, cus_name, cus_email, cus_phone, cus_add1 } = req.body;
 
-    const data = {
-      store_id,
-      store_passwd,
-      total_amount: amount,
-      currency: "BDT",
-      tran_id: uuidv4(), // unique transaction id
-      success_url: "http://localhost:5000/api/sslcommerz/success",
-      fail_url: "http://localhost:5000/api/sslcommerz/fail",
-      cancel_url: "http://localhost:5000/api/sslcommerz/cancel",
-      emi_option: 0,
-      cus_name,
-      cus_email,
-      cus_add1: "Dhaka",
-      cus_phone: "01711111111",
-      shipping_method: "NO",
-      product_name: "Test Product",
-      product_category: "General",
-      product_profile: "general",
-    };
+      const data = {
+        total_amount: amount,
+        currency: 'BDT',
+        tran_id: 'REF123', // use unique tran_id for each api call
+        success_url: 'http://localhost:3030/success',
+        fail_url: 'http://localhost:3030/fail',
+        cancel_url: 'http://localhost:3030/cancel',
+        ipn_url: 'http://localhost:3030/ipn',
+        shipping_method: 'Courier',
+        product_name: 'Computer.',
+        product_category: 'Electronic',
+        product_profile: 'general',
+        cus_name,
+        cus_email,
+        cus_add1,
+        cus_add2: 'Dhaka',
+        cus_city: 'Dhaka',
+        cus_state: 'Dhaka',
+        cus_postcode: '1000',
+        cus_country: 'Bangladesh',
+        cus_phone,
+        cus_fax: '01711111111',
+        ship_name: 'Customer Name',
+        ship_add1: 'Dhaka',
+        ship_add2: 'Dhaka',
+        ship_city: 'Dhaka',
+        ship_state: 'Dhaka',
+        ship_postcode: 1000,
+        ship_country: 'Bangladesh',
+      };
+      const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
+      sslcz.init(data).then(apiResponse => {
+        // Redirect the user to payment gateway
+        let GatewayPageURL = apiResponse.GatewayPageURL
+        // res.redirect(GatewayPageURL)
+        res.json({ GatewayPageURL }); // new code; Send JSON instead of redirect
+        console.log('Redirecting to: ', GatewayPageURL)
+      });
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+      res.status(500).json({ error: "Payment initiation failed" });
+    }
+  });
 
-    const response = await axios.post(baseURL, data, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }
-    });
+  // Success callback
+  router.post("/success", (req, res) => {
+    console.log("Payment Success:", req.body);
+    res.send("Payment Successful!");
+  });
 
-    res.json(response.data);
-  } catch (error) {
-    console.error(error.response?.data || error.message);
-    res.status(500).json({ error: "Payment initiation failed" });
-  }
-});
+  // Fail callback
+  router.post("/fail", (req, res) => {
+    console.log("Payment Failed:", req.body);
+    res.send("Payment Failed!");
+  });
 
-// Success callback
-router.post("/success", (req, res) => {
-  console.log("Payment Success:", req.body);
-  res.send("Payment Successful!");
-});
+  // Cancel callback
+  router.post("/cancel", (req, res) => {
+    console.log("Payment Cancelled:", req.body);
+    res.send("Payment Cancelled!");
+  });
 
-// Fail callback
-router.post("/fail", (req, res) => {
-  console.log("Payment Failed:", req.body);
-  res.send("Payment Failed!");
-});
-
-// Cancel callback
-router.post("/cancel", (req, res) => {
-  console.log("Payment Cancelled:", req.body);
-  res.send("Payment Cancelled!");
-});
-
-return router;
+  return router;
 }
