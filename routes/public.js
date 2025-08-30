@@ -146,6 +146,8 @@ module.exports = (collections) => {
 
     // Order a tabil
 
+    // pament with SSLCommerz Payment
+
     return routes;
 }
 
