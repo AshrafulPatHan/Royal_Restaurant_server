@@ -33,10 +33,10 @@ module.exports = (collections) => {
         total_amount: amount,
         currency: 'BDT',
         tran_id: 'REF123', // use unique tran_id for each api call
-        success_url: 'http://localhost:3030/success',
-        fail_url: 'http://localhost:3030/fail',
-        cancel_url: 'http://localhost:3030/cancel',
-        ipn_url: 'http://localhost:3030/ipn',
+        success_url: 'http://localhost:3000/api/sslcommerz/success',
+        fail_url: 'http://localhost:3000/api/sslcommerz/fail',
+        cancel_url: 'http://localhost:3000/api/sslcommerz/cancel',
+        ipn_url: 'http://localhost:3000/api/sslcommerz/ipn',
         shipping_method: 'Courier',
         product_name: 'Computer.',
         product_category: 'Electronic',
@@ -76,7 +76,7 @@ module.exports = (collections) => {
   // Success callback
   router.post("/success", (req, res) => {
     console.log("Payment Success:", req.body);
-    res.send("Payment Successful!");
+    res.status(200).send("Payment Successful!");
   });
 
   // Fail callback
