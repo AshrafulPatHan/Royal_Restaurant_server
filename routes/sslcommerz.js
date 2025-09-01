@@ -76,19 +76,55 @@ module.exports = (collections) => {
   // Success callback
   router.post("/success", (req, res) => {
     console.log("Payment Success:", req.body);
-    res.status(200).send("Payment Successful!");
+    // res.status(200).send("Payment Successful!");
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Payment Success</title>
+        </head>
+        <body>
+            <h1>Your Payment is successful</h1>
+            <a href="http://localhost:5173">Go Home</a>
+        </body>
+        </html>
+    `);
   });
 
   // Fail callback
   router.post("/fail", (req, res) => {
     console.log("Payment Failed:", req.body);
-    res.send("Payment Failed!");
+    // res.send("Payment Failed!");
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Payment Failed</title>
+        </head>
+        <body>
+            <h1>Your Payment is failed</h1>
+            <a href="http://localhost:5173">Go Home</a>
+        </body>
+        </html>
+    `);
   });
 
   // Cancel callback
   router.post("/cancel", (req, res) => {
     console.log("Payment Cancelled:", req.body);
-    res.send("Payment Cancelled!");
+    // res.send("Payment Cancelled!");
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Payment cancel</title>
+        </head>
+        <body>
+            <h1>Your Payment is cancel</h1>
+            <a href="http://localhost:5173">Go Home</a>
+        </body>
+        </html>
+    `);
   });
 
   return router;
