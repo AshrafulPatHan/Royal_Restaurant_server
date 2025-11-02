@@ -60,8 +60,8 @@ Make sure you have the following installed:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [Your Repository URL]
-    cd royal-restaurant-server
+    git clone [https://github.com/AshrafulPatHan/Royal_Restaurant_server.git]
+    cd Royal_Restaurant_server
     ```
 2.  **Install dependencies:**
     ```bash
@@ -77,7 +77,7 @@ Create a file named `.env` in the root directory and add your configuration vari
 PORT=5000
 
 # Database
-MONGODB_URI=mongodb://localhost:27017/royal-restaurant
+MONGO_URI=mongodb://localhost:27017/royal-restaurant
 
 # Authentication
 JWT_SECRET=YOUR_VERY_SECRET_KEY
@@ -86,4 +86,5 @@ BCRYPT_SALT_ROUNDS=10
 # SSLCommerz Integration
 STORE_ID=your_sslcommerz_store_id
 STORE_PASSWORD=your_sslcommerz_store_password
-IS_LIVE=false # Set to true for production environment
+
+```
