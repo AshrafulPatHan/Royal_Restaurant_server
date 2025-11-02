@@ -1,6 +1,6 @@
 # 👑 Royal Restaurant Server 🍽️
 
-
+<img align="center" height="550" src="https://cdn.discordapp.com/attachments/1373962207515377704/1433762793873739777/website-mockuo-restrunt.jpg?ex=6907d968&is=690687e8&hm=8c67ad2396a085577503e194646bd1817b9ed52762f544f2b387d32656d659aa" />
 
 ## Short Description of Project
 
