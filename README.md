@@ -64,7 +64,7 @@ Make sure you have the following installed:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/AshrafulPatHan/Royal_Restaurant_server.git]
+    git clone https://github.com/AshrafulPatHan/Royal_Restaurant_server.git
     cd Royal_Restaurant_server
     ```
 2.  **Install dependencies:**
