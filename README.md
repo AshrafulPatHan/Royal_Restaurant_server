@@ -4,7 +4,7 @@
 
 ## Short Description of Project
 
-This repository contains the backend server for the **Royal Restaurant** website. Built with **Express.js**, this server is responsible for managing menu data, handling secure administrative access, **facilitating blog management with visitor tracking**, and integrating a reliable payment gateway via **SSLCommerz**. It provides a robust and scalable foundation for the restaurant's online presence and e-commerce functionalities.
+This repository contains the backend server for the **Royal Restaurant** website. Built with **Express.js**, this server is responsible for managing menu data, handling secure administrative access, and integrating a reliable payment gateway via **SSLCommerz**. It provides a robust and scalable foundation for the restaurant's online presence and e-commerce functionalities.
 
 ---
 
@@ -16,10 +16,6 @@ The server implements several critical features to ensure a smooth and secure op
 * **Secure Admin Authentication:** Implements **JSON Web Tokens (JWT)** for session management and **Bcrypt** for hashing admin passwords, ensuring only authorized personnel can access administrative functionalities.
 * **Payment Integration:** Seamless integration with the **SSLCommerz** payment gateway to handle online transactions for food orders.
 * **Comprehensive Menu Management:** The admin interface supports **CRUD (Create, Read, Update, Delete)** operations, allowing administrators to fully manage and update the menu in real-time.
-* **Dynamic Blog Management:**
-    * **Admin Blog CRUD:** Admins can **Post, Update, and Delete** blog entries.
-    * **Visitor Tracking:** Endpoint to record and retrieve the **view count** for each blog post.
-    * **Real-time Commenting:** API routes to handle **user comments** on blog posts.
 * **User Communication:** Functionality to **receive and process email communications** or inquiries from website users.
 
 ---
@@ -31,7 +27,7 @@ This project utilizes a modern and efficient set of technologies:
 | Category | Technology | Purpose |
 | :--- | :--- | :--- |
 | **Backend Framework** | **Node.js** & **Express.js** | Server-side runtime and web framework for building RESTful APIs. |
-| **Database** | **MongoDB** | NoSQL database for flexible and scalable storage of menu items, **blog content, comments**, user data, and admin information. |
+| **Database** | **MongoDB** | NoSQL database for flexible and scalable storage of menu items, user data, and admin information. |
 | **Authentication** | **JSON Web Tokens (JWT)** | Secure, state-less authentication for identifying authorized users (Admins). |
 | **Password Hashing** | **Bcrypt** | Industry-standard cryptographic library for securely hashing and storing admin passwords. |
 | **Payment Gateway** | **SSLCommerz** | Integration for secure and reliable online payment processing. |
@@ -44,8 +40,8 @@ The server is structured around three main route groups:
 
 | Route | Description | Security |
 | :--- | :--- | :--- |
-| `/` | **Main/Public Routes** | Unsecured. Used for fetching the menu, **retrieving blog posts, viewing counts, and posting comments**, and handling user inquiries. |
-| `/admin` | **Admin Routes** | Secured with **JWT**. Used for administrator login, menu CRUD operations, and **blog post CRUD operations**. |
+| `/` | **Main/Public Routes** | Unsecured. Used for fetching the menu and handling user inquiries. |
+| `/admin` | **Admin Routes** | Secured with **JWT**. Used for administrator login and menu CRUD operations. |
 | `/api/sslcommerz` | **Payment Routes** | Secured/Server-to-Server. Used for initiating and handling callback/IPN responses from SSLCommerz. |
 
 ---
@@ -62,15 +58,15 @@ Make sure you have the following installed:
 
 ### 2. Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [[https://github.com/AshrafulPatHan/Royal_Restaurant_server.git](https://github.com/AshrafulPatHan/Royal_Restaurant_server.git)]
-    cd Royal_Restaurant_server
-    ```
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/AshrafulPatHan/Royal_Restaurant_server.git]
+    cd Royal_Restaurant_server
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
 ### 3. Configuration
 
@@ -90,3 +86,5 @@ BCRYPT_SALT_ROUNDS=10
 # SSLCommerz Integration
 STORE_ID=your_sslcommerz_store_id
 STORE_PASSWORD=your_sslcommerz_store_password
+
+```
