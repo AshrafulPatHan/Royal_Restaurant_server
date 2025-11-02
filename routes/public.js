@@ -35,7 +35,7 @@ module.exports = (collections) => {
     // limate menu
     routes.get('/limate-menu', async (req, res) => {
         try {
-            const cursor = Menu.find().sort({ _id: -1 }).limit(3).toArray();
+            const cursor = await Menu.find().sort({ _id: 1 }).limit(3).toArray();
             res.send(cursor);
         } catch (error) {
             console.error('Error retrieving data:', error);
